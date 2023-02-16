@@ -1,0 +1,63 @@
+#+title: Schedular Algorithms
+#+description: Example and output for Schedular Algorithms
+#+author: Aditya Yadav
+#+date: <2023-02-16 Thu>
+
+* Running the code
+How to run the code
+#+begin_src bash
+cargo run
+#+end_src
+* Algoritms
+** FCFS (First come first serve)
+|------------+--------------+------------|
+| Process ID | Arrival Time | Burst Time |
+|------------+--------------+------------|
+| P1         |            5 |         15 |
+| P2         |            0 |          4 |
+| P3         |            0 |         16 |
+| P4         |           38 |          3 |
+|------------+--------------+------------|
+[[file:output_image/output_fcfs.png][FCFS Output]]
+** SJF (Shortest job first)
+|------------+--------------+------------|
+| Process ID | Arrival Time | Burst Time |
+|------------+--------------+------------|
+| P1         |            1 |          1 |
+| P2         |            0 |          2 |
+| P3         |            0 |          2 |
+| P4         |            6 |          5 |
+|------------+--------------+------------|
+[[file:output_image/output_sjf.png][SJF Output]]
+** LFS (Longest time first)
+|------------+--------------+------------|
+| Process ID | Arrival Time | Burst Time |
+|------------+--------------+------------|
+| P1         |            1 |          2 |
+| P2         |            2 |          4 |
+| P3         |            3 |          6 |
+| P4         |            4 |          8 |
+|------------+--------------+------------|
+[[file:output_image/output_ljf.png][LJF Output]]
+** PSNP (Priority Scheduling Non-preemptive)
+|------------+----------+--------------+------------|
+| Process ID | Priority | Arrival Time | Burst Time |
+|------------+----------+--------------+------------|
+| P1         |        2 |            0 |         11 |
+| P2         |        0 |            5 |         28 |
+| P3         |        3 |           12 |          2 |
+| P4         |        1 |            2 |         10 |
+| P5         |        4 |            9 |         16 |
+|------------+----------+--------------+------------|
+[[file:output_image/output_psnr.png][PSNP Output]]
+** HRRN (Highest reponse ratio Next)
+|------------+--------------+------------|
+| Process ID | Arrival Time | Burst Time |
+|------------+--------------+------------|
+| P1         |            3 |          1 |
+| P2         |            6 |          3 |
+| P3         |            8 |          5 |
+| P4         |            4 |          7 |
+| P5         |            5 |          8 |
+|------------+--------------+------------|
+[[file:output_image/output_hrrn.png][HRRN output]]
