@@ -18,7 +18,7 @@ cargo run
 | P3         |            0 |         16 |
 | P4         |           38 |          3 |
 |------------+--------------+------------|
-[[file:output_image/output_fcfs.png][FCFS Output]]
+[[file:output_image/output_fcfs.png]]
 ** SJF (Shortest job first)
 |------------+--------------+------------|
 | Process ID | Arrival Time | Burst Time |
@@ -28,7 +28,7 @@ cargo run
 | P3         |            0 |          2 |
 | P4         |            6 |          5 |
 |------------+--------------+------------|
-[[file:output_image/output_sjf.png][SJF Output]]
+[[file:output_image/output_sjf.png]]
 ** LFS (Longest time first)
 |------------+--------------+------------|
 | Process ID | Arrival Time | Burst Time |
@@ -38,7 +38,7 @@ cargo run
 | P3         |            3 |          6 |
 | P4         |            4 |          8 |
 |------------+--------------+------------|
-[[file:output_image/output_ljf.png][LJF Output]]
+[[file:output_image/output_ljf.png]]
 ** PSNP (Priority Scheduling Non-preemptive)
 |------------+----------+--------------+------------|
 | Process ID | Priority | Arrival Time | Burst Time |
@@ -49,7 +49,7 @@ cargo run
 | P4         |        1 |            2 |         10 |
 | P5         |        4 |            9 |         16 |
 |------------+----------+--------------+------------|
-[[file:output_image/output_psnr.png][PSNP Output]]
+[[file:output_image/output_psnr.png]]
 ** HRRN (Highest reponse ratio Next)
 |------------+--------------+------------|
 | Process ID | Arrival Time | Burst Time |
@@ -60,4 +60,4 @@ cargo run
 | P4         |            4 |          7 |
 | P5         |            5 |          8 |
 |------------+--------------+------------|
-[[file:output_image/output_hrrn.png][HRRN output]]
+[[file:output_image/output_hrrn.png]]
