@@ -17,10 +17,10 @@ fn main() {
     let mut input = input();
     match algo.as_str() {
         "1" => fcfs::fcfs(&mut input),
-        "2" => sjf::sjf(),
-        "3" => ljf::ljf(),
-        "4" => psnr::psnr(),
-        "5" => hrrn::hrrn(),
+        "2" => sjf::sjf(&mut input),
+        "3" => ljf::ljf(&mut input),
+        "4" => psnr::psnr(&mut input),
+        "5" => hrrn::hrrn(&mut input),
         _ => unreachable!(),
     }
 }

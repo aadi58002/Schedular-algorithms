@@ -1,4 +1,4 @@
-use std::io::{self,Write};
+use std::io::{self, Write};
 
 #[derive(Clone, Debug, Default)]
 pub struct Process {
@@ -12,9 +12,11 @@ pub struct Process {
     pub response_time: usize,
 }
 
-pub fn input() -> Vec<Process>{
+pub fn input() -> Vec<Process> {
     let mut buf = String::new();
-    io::stdin().read_line(&mut buf).expect("unable to read from stdin");
+    io::stdin()
+        .read_line(&mut buf)
+        .expect("unable to read from stdin");
     let n = buf.trim().parse::<usize>().unwrap();
     let mut p = vec![Process::default(); n];
 
@@ -22,13 +24,17 @@ pub fn input() -> Vec<Process>{
         print!("Enter arrival time of process {}: ", i + 1);
         io::stdout().flush().expect("unable to write to stdout");
         buf.clear();
-        io::stdin().read_line(&mut buf).expect("unable to read from stdin");
+        io::stdin()
+            .read_line(&mut buf)
+            .expect("unable to read from stdin");
         p[i].arrival_time = buf.trim().parse().unwrap();
 
         print!("Enter burst time of process {}: ", i + 1);
         io::stdout().flush().expect("unable to write to stdout");
         buf.clear();
-        io::stdin().read_line(&mut buf).expect("unable to read from stdin");
+        io::stdin()
+            .read_line(&mut buf)
+            .expect("unable to read from stdin");
         p[i].burst_time = buf.trim().parse().unwrap();
 
         p[i].pid = i + 1;
@@ -36,13 +42,51 @@ pub fn input() -> Vec<Process>{
     p
 }
 
+impl Process {
+    pub fn print_info(process: &mut Vec<Process>) {
+        let mut idle_time = process[0].arrival_time;
+        for ele in process.windows(2) {
+            idle_time += ele[1].start_time - ele[0].completion_time;
+        }
+        let (mut csum, mut wsum, mut tsum, mut rsum) = (0, 0, 0, 0);
+        for val in process.iter() {
+            csum += val.completion_time;
+            wsum += val.waiting_time;
+            tsum += val.turnaround_time;
+            rsum += val.response_time;
+        }
+        println!(
+            "\nAvg Completion time: {:.2}",
+            csum as f64 / process.len() as f64
+        );
+        println!(
+            "Avg Waiting time: {:.2}",
+            wsum as f64 / process.len() as f64
+        );
+        println!(
+            "Avg turnaround time: {:.2}",
+            tsum as f64 / process.len() as f64
+        );
+        println!(
+            "CPU utilitzation: {:.2}",
+            ((process[process.len() - 1].completion_time - idle_time) as f64
+                / process[process.len() - 1].completion_time as f64)
+                * 100f64
+        );
+        println!(
+            "Avg Reponse time: {:.2}",
+            rsum as f64 / process.len() as f64
+        );
+        println!(
+            "ThroughPut: {:.2}",
+            (process.len() as f64)
+                / ((process[process.len() - 1].completion_time - process[0].arrival_time) as f64)
+        );
 
-impl Process{
-    pub fn print_table(process: Vec<Process>){
+        process.sort_by_key(|process| process.pid);
         println!("");
         println!("#P\tAT\tBT\tST\tCT\tTAT\tWT\tRT\n");
-
-        for ele in process {
+        for ele in process.iter() {
             println!(
                 "{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n",
                 ele.pid,
@@ -55,22 +99,5 @@ impl Process{
                 ele.response_time
             );
         }
-    }
-    pub fn print_info(process: Vec<Process>){
-        let (mut csum,mut wsum,mut tsum,mut rsum) = (0,0,0,0);
-        for val in process.iter(){
-            csum += val.completion_time;
-            wsum += val.waiting_time;
-            tsum += val.turnaround_time;
-            rsum += val.response_time;
-        }
-        println!("Avg Completion time: {}",csum as f64 / process.len() as f64);
-        println!("Avg Waiting time: {}",wsum as f64 / process.len() as f64);
-        println!("Avg turnaround time: {}",tsum as f64 / process.len() as f64);
-        println!("Avg Reponse time: {}",rsum as f64 / process.len() as f64);
-        
-    }
-    pub fn print_throughput(process_size: usize,time: usize){
-        println!("Through Put: {:.2}",(process_size as f64 / time as f64)*100f64);
     }
 }
