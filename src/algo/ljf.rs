@@ -4,7 +4,7 @@ use super::common::Process;
 pub fn ljf(process: &mut Vec<Process>){
     process.sort_by(|val1, val2| val1.arrival_time.cmp(&val2.arrival_time));
 
-    let mut last: Option<_> = None;
+    let mut last = None;
 
     for i in 0..process.len() {
         last = Some({
@@ -26,5 +26,5 @@ pub fn ljf(process: &mut Vec<Process>){
             .count();
         process[i + 1..i + 1 + count].sort_by(|a, b| b.burst_time.cmp(&a.burst_time));
     }
-    Process::print_info(process);
+    Process::print_info(process,false);
 }

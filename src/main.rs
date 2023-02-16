@@ -14,13 +14,27 @@ fn main() {
     let mut algo = String::new();
     stdin.read_line(&mut algo).expect("Unable to read stdin");
     algo = algo.trim().to_string();
-    let mut input = input();
     match algo.as_str() {
-        "1" => fcfs::fcfs(&mut input),
-        "2" => sjf::sjf(&mut input),
-        "3" => ljf::ljf(&mut input),
-        "4" => psnr::psnr(&mut input),
-        "5" => hrrn::hrrn(&mut input),
+        "1" => {
+            let mut input = input(false);
+            fcfs::fcfs(&mut input);
+        }
+        "2" => {
+            let mut input = input(false);
+            sjf::sjf(&mut input);
+        }
+        "3" => {
+            let mut input = input(false);
+            ljf::ljf(&mut input);
+        }
+        "4" => {
+            let mut input = input(true);
+            psnr::psnr(&mut input);
+        }
+        "5" => {
+            let mut input = input(false);
+            hrrn::hrrn(&mut input);
+        }
         _ => unreachable!(),
     }
 }
